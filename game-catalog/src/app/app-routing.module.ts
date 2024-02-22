@@ -11,6 +11,10 @@ const APP_ROUTES: Routes = [
     children: [
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      {
+        path: 'games',
+        loadChildren: () => import('./games/games.module').then(m => m.GamesModule)
+      }
     ],
   },
   { path: '**', component: PageNotFoundComponent }
