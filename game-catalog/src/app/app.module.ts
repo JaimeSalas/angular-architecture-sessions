@@ -13,6 +13,7 @@ import { WelcomeComponent } from './home/welcome.component';
 import { ShellComponent } from './home/shell.component';
 import { PageNotFoundComponent } from './home/page-not-found.component';
 import { UserModule } from './user/user.module';
+import { FooPipe } from './foo.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UserModule } from './user/user.module';
     WelcomeComponent,
     ShellComponent,
     PageNotFoundComponent,
+    FooPipe,
   ],
   imports: [
     BrowserModule,

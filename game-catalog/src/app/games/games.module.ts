@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { GameService } from './game.service';
 import { SharedModule } from '../shared/shared.module';
+import { GameListComponent } from './game-list/game-list.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    GameListComponent
+  ],
   imports: [
     SharedModule
   ],
