@@ -269,3 +269,26 @@ project root/
     ├── main.ts
     └── index.html
 </pre>
+
+## Observable
+
+- A collection of events or data values emitted over time
+- An observable is created from an event or data source
+  - User actions
+  - Application events (routing, forms)
+  - Response from an HTTP request
+  - Internal structures
+
+## Subscription
+
+>  MUST subscribe to start receiving notifications.
+
+## Observer
+
+```ts
+{
+  next() {},
+  error() {},
+  complete() {}
+}
+```

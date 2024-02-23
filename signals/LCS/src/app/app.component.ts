@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import {
+  concatMap,
+  delay,
+  map,
+  mergeMap,
+  of,
+  range,
+  switchMap,
+  tap,
+} from 'rxjs';
 // import { Subscription, of, from, fromEvent } from 'rxjs';
 
 @Component({
@@ -20,38 +30,45 @@ export class AppComponent {
   // subEvent!: Subscription;
   // subscriptions: Subscription[] = [];
 
-  // ngOnInit(): void {
-  //   this.sub = of(2, 4, 6, 8).subscribe((item) =>
-  //     console.log(`Value from of: `, item)
-  //   );
-  //   this.subArray = of([2, 4, 6, 8]).subscribe((item) =>
-  //     console.log(`Value from of (array): `, item)
-  //   );
-  //   this.subFrom = from([20, 15, 10, 5]).subscribe({
-  //     next(item) {
-  //       console.log('from', item);
-  //     },
-  //     error(err) {
-  //       console.log(err);
-  //     },
-  //     complete() {
-  //       console.log('completed');
-  //     },
-  //   });
-  //   // this.subEvent = fromEvent(document, 'click').subscribe({
-  //   //   next: (ev) => {
-  //   //     console.log(ev.target);
-  //   //   },
-  //   //   error: (err) => console.log(err),
-  //   //   complete: () => console.log('complet'),
-  //   // });
+  ngOnInit(): void {
+    // this.concatMapStart();
+    // this.mergetMapStart();
+    // this.switchMapStart();
+  }
 
-  //   const keys: string[] = [];
-  //   this.subEvent = fromEvent(document, 'keydown').subscribe((ev) => {
-  //     keys.push((ev as KeyboardEvent).key);
-  //     console.log('keys', keys);
-  //   });
-  // }
+  private concatMapStart() {
+    range(1, 5)
+      .pipe(
+        tap((x) => x),
+        concatMap((i) => of(i).pipe(delay(this.randomDelay()))),
+        tap((x) => x)
+      )
+      .subscribe((i) => console.log('concatMap: ', i));
+  }
+
+  private mergetMapStart() {
+    range(1, 5)
+      .pipe(
+        tap((x) => x),
+        mergeMap((i) => of(i).pipe(delay(this.randomDelay()))),
+        tap((x) => x)
+      )
+      .subscribe((i) => console.log('mergeMap: ', i));
+  }
+
+  private switchMapStart() {
+    range(1, 5)
+      .pipe(
+        tap((x) => x),
+        switchMap((i) => of(i).pipe(delay(this.randomDelay()))),
+        tap((x) => x)
+      )
+      .subscribe((i) => console.log('swithcMap: ', i));
+  }
+
+  private randomDelay() {
+    return Math.floor(Math.random() * 1000) + 500;
+  }
 
   // ngOnDestroy(): void {
   //   this.sub.unsubscribe();
